@@ -13,11 +13,12 @@ for (var i =0;i<gifButtonArray.length;i++)
 
 
 
-
-
-
-
-
+$("#submit-button").on("click", function(){
+    var newGifButton = $('<button type="button" class="btn btn-info">');
+    newGifButton.text($("#search").val());
+    newGifButton.attr('id',$("#search").val());
+    $("#buttonRow").append(newGifButton);
+});
 
 
 
