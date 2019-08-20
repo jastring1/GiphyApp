@@ -52,14 +52,16 @@ function animateGif(){
         $(this).attr("data-state", "still");
     }
 }
-$("#submit-button").on("click", function () {
+function addCategory(){
     event.preventDefault();
     var newGif = $("#search").val().trim();
     gifButtonArray.push(newGif);
     renderButtons();
-});
+
+}
 
 renderButtons();
+$(document).on("click", "#submit-button", addCategory);
 $(document).on("click", ".btn-info", displayGifs);
 $(document).on("click", ".gif", animateGif);
 
