@@ -17,7 +17,7 @@ function displayGifs(){
     $("#gifRow").empty();
     var name = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        name + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
+        name + "&api_key=DR6i6j7HT7g4SZX8exHOz0zrbtsn37wM&limit=10";
     $.ajax({
         url: queryURL,
         method: "GET"
