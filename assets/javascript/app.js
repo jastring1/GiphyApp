@@ -34,8 +34,8 @@ function displayGifs() {
                 gifImage.attr("data-animate", results[i].images.fixed_height.url);
                 gifImage.attr("data-state", "still");
                 gifImage.addClass("gif");
-                gifDiv.append(p);
                 gifDiv.append(gifImage);
+                gifDiv.append(p);
                 $("#gifRow").prepend(gifDiv);
             }
         });
@@ -56,7 +56,7 @@ function addCategory() {
     var newGif = $("#search").val().trim();
     topics.push(newGif);
     renderButtons();
-
+    
 }
 
 renderButtons();
