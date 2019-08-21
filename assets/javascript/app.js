@@ -1,19 +1,19 @@
 /*  GiphyApp.js
     Tripp Stringfield */
 
-var gifButtonArray = ["cars", "cats", "dogs", "fail", "bike", "ouch", "crazy", "stupid", "flip", "crash", "jump", "sport", "fall"];
-
+var topics = ["cars", "cats", "dogs", "fail", "bike", "ouch", "crazy", "stupid", "flip", "crash", "jump", "sport", "fall"];
+limit = 10;
 function renderButtons() {
 
     $("#buttonRow").empty();
-    for (var i = 0; i < gifButtonArray.length; i++) {
+    for (var i = 0; i < topics.length; i++) {
         var a = $('<button type="button" class="btn btn-info">');
-        a.attr("data-name", gifButtonArray[i]);
-        a.text(gifButtonArray[i]);
+        a.attr("data-name", topics[i]);
+        a.text(topics[i]);
         $("#buttonRow").append(a);
     }
 }
-function displayGifs(){
+function displayGifs() {
     $("#gifRow").empty();
     var name = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -34,15 +34,14 @@ function displayGifs(){
                 gifImage.attr("data-animate", results[i].images.fixed_height.url);
                 gifImage.attr("data-state", "still");
                 gifImage.addClass("gif");
-                console.log(gifImage.attr("data-animate"));
                 gifDiv.append(p);
                 gifDiv.append(gifImage);
-               $("#gifRow").prepend(gifDiv);
+                $("#gifRow").prepend(gifDiv);
             }
         });
-
 }
-function animateGif(){
+
+function animateGif() {
     var state = $(this).attr("data-state");
     if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
@@ -52,10 +51,10 @@ function animateGif(){
         $(this).attr("data-state", "still");
     }
 }
-function addCategory(){
+function addCategory() {
     event.preventDefault();
     var newGif = $("#search").val().trim();
-    gifButtonArray.push(newGif);
+    topics.push(newGif);
     renderButtons();
 
 }
