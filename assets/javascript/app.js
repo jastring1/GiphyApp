@@ -2,7 +2,7 @@
     Tripp Stringfield */
 
 var topics = ["cars", "cats", "dogs", "fail", "bike", "ouch", "crazy", "stupid", "flip", "crash", "jump", "sport", "fall"];
-limit = 10;
+
 function renderButtons() {
 
     $("#buttonRow").empty();
@@ -12,6 +12,32 @@ function renderButtons() {
         a.text(topics[i]);
         $("#buttonRow").append(a);
     }
+}
+function loadTrending(){
+    $("#gifRow").empty();
+    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=DR6i6j7HT7g4SZX8exHOz0zrbtsn37wM&limit=10";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+        .then(function (response) {
+            var results = response.data;
+            for (var i = 0; i < results.length; i++) {
+                var gifDiv = $("<div>");
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+                var gifImage = $("<img>");
+                gifImage.attr("src", results[i].images.fixed_height_still.url);
+                gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                gifImage.attr("data-state", "still");
+                gifImage.addClass("gif");
+                gifDiv.append(gifImage);
+                gifDiv.append(p);
+                $("#gifRow").append(gifDiv);
+            }
+        });
+
 }
 function displayGifs() {
     $("#gifRow").empty();
@@ -53,13 +79,13 @@ function animateGif() {
 }
 function addCategory() {
     event.preventDefault();
-    var newGif = $("#search").val().trim();
+    var newGif = $("#search").val().trim().toLowerCase();
     topics.push(newGif);
     renderButtons();
-    
 }
 
 renderButtons();
+loadTrending();
 $(document).on("click", "#submit-button", addCategory);
 $(document).on("click", ".btn-info", displayGifs);
 $(document).on("click", ".gif", animateGif);
