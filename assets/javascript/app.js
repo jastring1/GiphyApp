@@ -16,7 +16,7 @@ function renderButtons() {
         $("#buttonRow").append(a);
     }
 }
-function loadTrending(){
+function loadTrending() {
     $("#gifRow").empty();
     var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=DR6i6j7HT7g4SZX8exHOz0zrbtsn37wM&limit=" + limit;
     $.ajax({
@@ -72,8 +72,10 @@ function displayGifs() {
 }
 function displayMore() {
     var name = globalName;
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        name + "&api_key=DR6i6j7HT7g4SZX8exHOz0zrbtsn37wM&limit=" + limit +"&offset=" + offset;
+    var queryURL;
+    globalName === "" ? queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=DR6i6j7HT7g4SZX8exHOz0zrbtsn37wM&limit=" + limit + "&offset=" + offset :
+        queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        name + "&api_key=DR6i6j7HT7g4SZX8exHOz0zrbtsn37wM&limit=" + limit + "&offset=" + offset;
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -95,7 +97,7 @@ function displayMore() {
                 $("#gifRow").append(gifDiv);
             }
         });
-        offset += 10;
+    offset += 10;
 }
 
 function animateGif() {
@@ -111,8 +113,10 @@ function animateGif() {
 function addCategory() {
     event.preventDefault();
     var newGif = $("#search").val().trim().toLowerCase();
+    if (newGif !== ""){
     topics.push(newGif);
     renderButtons();
+    }
 }
 
 renderButtons();
