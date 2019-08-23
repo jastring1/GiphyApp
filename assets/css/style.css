@@ -2,8 +2,13 @@ button{
     padding: 3%;
     margin-right:2%;
     margin-top: 10px;
+    font-weight: bold;
 }
 p{
     font-weight: bold;
     color: white;
+    margin: 2%;
+}
+img{
+    margin-right: 20px;
 }
