@@ -7,8 +7,9 @@ button{
 p{
     font-weight: bold;
     color: white;
-    margin: 2%;
+    margin-left: 20px;
 }
 img{
+    margin-left: 20px;
     margin-right: 20px;
 }
